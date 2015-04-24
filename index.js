@@ -25,10 +25,8 @@ function findValidExecutable(paths, cb) {
   fs.stat(loc, function (err, stat) {
     if (stat && stat.isFile()) {
       cb(null, loc);
-    } else if (paths.length !== 0) {
-      findValidExecutable(paths, cb);
     } else {
-      cb(new Error("Couldn't locate executable at given paths."));
+      findValidExecutable(paths, cb);
     }
   });
 }
