@@ -30,6 +30,11 @@ function findValidExecutable(paths, cb) {
   });
 }
 
+function cleanup(keyPath) {
+	fs.unlink(keyPath, function () { });
+	fs.unlink(keyPath + ".pub", function () { });
+}
+
 module.exports.locate = function (searchPaths, cb) {
   var cmd = "ssh-keygen";
   
@@ -88,9 +93,7 @@ module.exports.generate = function (opts, cb) {
     var cp = spawn(loc, args, { stdio: "ignore" });
     
     cp.on("error", function () {
-      fs.unlink(keyPath, function () { });
-      fs.unlink(keyPath + ".pub", function () { });
-      
+    	cleanup(keyPath);
       if (done) return;
       
       done = true;
@@ -98,36 +101,31 @@ module.exports.generate = function (opts, cb) {
     });
     
     cp.on("close", function (code, signal) {
-      if (done) {
-        fs.unlink(keyPath, function () { });
-        fs.unlink(keyPath + ".pub", function () { });
-        
+    	if (done) {
+    		cleanup(keyPath);
         return;
       }
       
       done = true;
       
       fs.readFile(keyPath, { encoding: "utf8" }, function (err, privateKey) {
-        if (err) {
-          fs.unlink(keyPath, function () { });
-          fs.unlink(keyPath + ".pub", function () { });
+      	if (err) {
+      		cleanup(keyPath);
           done = true;
           
           return cb(err);
         }
         
         fs.readFile(keyPath + ".pub", { encoding: "utf8" }, function (err, publicKey) {
-          if (err) {
-            fs.unlink(keyPath, function () { });
-            fs.unlink(keyPath + ".pub", function () { });
+        	if (err) {
+        		cleanup(keyPath);
             done = true;
             
             return cb(err);
           }
           
-          done = true;
-          fs.unlink(keyPath, function () { });
-          fs.unlink(keyPath + ".pub", function () { });
+        	done = true;
+        	cleanup(keyPath);
           
           cb(null, {
             private: privateKey,
