@@ -1,6 +1,5 @@
 ﻿"use strict";
 
-var os = require("os");
 var path = require("path");
 var fs = require("fs");
 var spawn = require("child_process").spawn;
