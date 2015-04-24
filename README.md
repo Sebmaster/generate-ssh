@@ -1,7 +1,4 @@
-﻿generate-ssh
-###
-
-generate-ssh is a small wrapper around the ssh-keygen tool.
+﻿generate-ssh is a small wrapper around the ssh-keygen tool.
 It supports proper error handling, doesn't call the callback multiple times (:<) and has some support for locating the ssh-keygen executable on Windows.
 
 generate(opts { additionalPaths, comment, bits }, cb(err, data{ private, public }))
