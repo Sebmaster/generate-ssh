@@ -1,0 +1,7 @@
+# node specific
+node_modules/
+npm-debug.log
+
+# IDE specific
+*.sln
+*.njsproj

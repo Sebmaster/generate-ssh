@@ -1,0 +1,30 @@
+{
+  "name": "generate-ssh",
+  "version": "0.0.1",
+  "author": "Sebastian Mayr <npm@smayr.name>",
+  "description": "A wrapper around ssh-keygen",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sebmaster/ssh-keygen.git"
+  },
+  "keywords": [
+    "ssh-keygen",
+    "ssh",
+    "git",
+    "rsa",
+    "key"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sebmaster/ssh-keygen/issues"
+  },
+  "homepage": "https://github.com/Sebmaster/ssh-keygen#readme",
+  "dependencies": {
+    "which": "^1.0.9",
+    "temp": "~0.8.1"
+  }
+}
