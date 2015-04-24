@@ -1,6 +1,6 @@
 {
   "name": "generate-ssh",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Sebastian Mayr <npm@smayr.name>",
   "description": "A wrapper around ssh-keygen",
   "main": "index.js",
